@@ -29,7 +29,7 @@
 # to indicate their contents in a more appropriate way. We do not do this for the packages when shipped to
 # PyPi, since it is pretty obvious these are Python packages in any case.
 
-all_packages=vsc-utils
+all_packages=
 edit=
 release=
 
@@ -55,6 +55,12 @@ do
     esac
 done
 
+if [! -f bdist_rpm_settings.sh ]; then
+    echo "No bdist_rpm_settings.sh found. Cowardly refusing to continue. Bye."
+    exit 1
+fi
+
+source bdist_rpm_settings.sh
 
 package=$all_packages
 echo $package
@@ -64,13 +70,13 @@ rpm_target_name=`basename ${rpm_target}`
 
 if ! [ -f "setup.cfg" ]
 then
-    echo "No setup.cfg. Refusing cowardly to continue."
+    echo "No setup.cfg. Cowardly refusing to continue."
     exit 1
 fi
   # user specified requirements can be found in setup.cfg
 requirements=`grep "requires" setup.cfg | cut -d" " -f3- | tr "," "\n" | grep -vE "(^python-)|(-python$)" | tr "\n" "|" | sed -e 's/|$//'`
 if [ -z "$requirements" ]; then
-    echo "No requirements found. Refusing cowardly to continue."
+    echo "No requirements found. Cowardly refusing to continue."
     exit 1
 fi
 

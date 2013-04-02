@@ -34,7 +34,7 @@ has_setuptools = None
 
 # We do need all setup files to be included in the source dir if we ever want to install
 # the package elsewhere.
-EXTRA_SDIST_FILES = ['shared_setup.py', 'setup.py']
+EXTRA_SDIST_FILES = ['setup.py']
 
 
 def find_extra_sdist_files():
@@ -107,7 +107,7 @@ except:
     from distutils.command.install_scripts import install_scripts
     from distutils.command.build_py import build_py
     from distutils.command.sdist import sdist
-    from distutile.command.bdist_rpm import bdist_rpm, _bdist_rpm
+    from distutils.command.bdist_rpm import bdist_rpm, _bdist_rpm
 
     class vsc_egg_info(object):
         pass  # dummy class for distutils

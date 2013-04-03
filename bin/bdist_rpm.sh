@@ -68,7 +68,7 @@ python ./setup.py bdist_rpm
 rpm_target=`ls dist/${package}*noarch.rpm`
 rpm_target_name=`basename ${rpm_target}`
 
-if ! [ -f "setup.cfg" ]
+if [ ! -f "setup.cfg" ]
 then
     echo "No setup.cfg. Cowardly refusing to continue."
     exit 1

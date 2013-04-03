@@ -74,10 +74,10 @@ then
     exit 1
 fi
   # user specified requirements can be found in setup.cfg
-requirements=`grep "requires" setup.cfg | cut -d" " -f3- | tr "," "\n" | grep -vE "(^python-)|(-python$)" | tr "\n" "|" | sed -e 's/|$//'`
+  requirements=`grep "requires" setup.cfg | cut -d" " -f3- | tr "," "\n" | grep -vE "(^python-)|(-python$)|(_python)|(python_)" | tr "\n" "|" | sed -e 's/|$//'`
 if [ -z "$requirements" ]; then
-    echo "No requirements found. Cowardly refusing to continue."
-    exit 1
+    echo "No requirements found."
+    requirements="well-now-there-is-no-match-is-there"
 fi
 
 if [ -z "$release" ]; then

@@ -55,7 +55,7 @@ do
     esac
 done
 
-if [! -f bdist_rpm_settings.sh ]; then
+if [ ! -f bdist_rpm_settings.sh ]; then
     echo "No bdist_rpm_settings.sh found. Cowardly refusing to continue. Bye."
     exit 1
 fi
